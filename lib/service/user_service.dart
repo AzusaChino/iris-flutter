@@ -4,6 +4,10 @@ import 'package:iris/model/user.dart';
 class UserService {
   final Dio dio = new Dio();
 
+  UserService();
+
+  Stream<User> get authStateChanges => Stream.empty();
+
   Future<AuthState> login({String username, String password}) async {
     try {
       var res = await dio

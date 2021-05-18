@@ -28,13 +28,9 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
-  fonts:
-    - family: YAHEI-UI
-      fonts:
-        - asset: fonts/MSYH.ttf
-        # style: italic
-  #   - family: Trajan Pro
+  # fonts:
+  #   - family: Roboto
   #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  #       - asset: fonts/Roboto-Light.ttf
+  #       - asset: fonts/Roboto-Regular.tff
+        # style: italic

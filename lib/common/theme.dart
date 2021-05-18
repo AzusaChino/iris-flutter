@@ -4,7 +4,7 @@ final appTheme = ThemeData(
     primarySwatch: Colors.blue,
     textTheme: TextTheme(
         headline1: TextStyle(
-            fontFamily: 'YAHEI-UI',
+            fontFamily: 'Roboto',
             fontWeight: FontWeight.w700,
             fontSize: 24,
             color: Colors.black)));
