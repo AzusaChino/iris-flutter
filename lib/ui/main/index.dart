@@ -11,7 +11,7 @@ class MainPage extends StatelessWidget {
         child: new Text("Main Page"),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: () => Navigator.pushReplacementNamed(ctx, "/expore"),
+        onPressed: () => Navigator.pushReplacementNamed(ctx, "/explore"),
         child: new Text('探索'),
       ),
     );

@@ -1,23 +1,24 @@
-enum AuthStatus { loading, error, authed, unauthed }
-
-class AuthState {
-  final AuthStatus authStatus;
-  final String authError;
-
-  AuthState(this.authStatus, this.authError);
-}
-
 class User {
-  final String id;
-  final String username;
-  final String avatar;
+  User();
 
-  const User({this.id, this.username, this.avatar});
+  String id;
+  String username;
+  String email;
+  String avatar;
+  String vip;
+  String status;
 
-  Map<String, Object> toMap() {
-    if (id == null) {
-      return {'username': username, 'avatar': avatar};
-    }
-    return {'id': id, 'username': username, 'avatar': avatar};
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User()
+      ..username = json['username'] as String
+      ..avatar = json['avatar'] as String
+      ..vip = json['vip'] as String
+      ..status = json['status'] as String;
+  }
+
+  Map<String, dynamic> toJson(User instance) {
+    return <String, dynamic>{
+      "username": instance.username,
+    };
   }
 }
