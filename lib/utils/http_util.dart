@@ -1,39 +1,69 @@
 import 'dart:io';
 import 'dart:async';
-import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:iris/common/errors.dart';
 import 'package:iris/common/global.dart';
 import 'package:iris/model/index.dart';
 
 const baseUrl = 'http://127.0.0.1:3030/api';
 
 class HttpUtil {
-  HttpUtil([this.ctx]) {
-    _options = Options(extra: {"context": ctx});
+  static HttpUtil instance;
+
+  Dio dio;
+  BaseOptions options;
+
+  static HttpUtil getInstance() {
+    if (null == instance) {
+      instance = new HttpUtil();
+    }
+    return instance;
   }
 
-  BuildContext ctx;
-  Options _options;
+  HttpUtil() {
+    options = new BaseOptions(
+        baseUrl: baseUrl,
+        connectTimeout: 10000,
+        receiveTimeout: 5000,
+        responseType: ResponseType.json);
+    dio = new Dio(options);
 
-  static Dio dio = new Dio(BaseOptions(baseUrl: baseUrl));
-
-  static void init() {
-    // null means not login
-    dio.options.headers[HttpHeaders.authorizationHeader] = Global.profile.token;
+    dio.options.headers[HttpHeaders.authorizationHeader] =
+        Global.profile.accessToken;
   }
 
-  Future<User> login({String username, String password}) async {
-    String basic = 'Basic ' + base64.encode(utf8.encode('$username:$password'));
-    var r = await dio.post("/login",
-        data: {"username": username, "password": password},
-        options: _options.copyWith(
-            headers: {HttpHeaders.authorizationHeader: basic},
-            extra: {"noCache": true}));
+  Future<bool> login({String username, String password}) async {
+    var r = await dio
+        .post("/login", data: {"username": username, "password": password});
+    if (r.statusCode != 200) {
+      return false;
+    }
 
-    dio.options.headers[HttpHeaders.authorizationHeader] = basic;
-    Global.profile.token = basic;
-    return User.fromJson(r.data.data);
+    var data = r.data;
+    dio.options.headers[HttpHeaders.authorizationHeader] = data.accessToken;
+    Global.profile.accessToken = data.accessToken;
+    Global.profile.refreshToken = data.refreshToken;
+    return true;
+  }
+
+  Future<bool> refreshToken() async {
+    var r =
+        await dio.post("/token", data: {"token": Global.profile.refreshToken});
+    if (r.statusCode != 200) {
+      return false;
+    }
+    var data = r.data;
+    dio.options.headers[HttpHeaders.authorizationHeader] = data;
+    Global.profile.accessToken = data;
+    return true;
+  }
+
+  Future<User> getUser() async {
+    var r = await dio.get("/user");
+    if (r.statusCode != 200) {
+      throw CommonError("获取用户信息失败");
+    }
+    return User.fromJson(r.data);
   }
 
   Future<List<Section>> getSectionList() async {

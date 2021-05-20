@@ -4,7 +4,8 @@ class Profile {
   Profile();
 
   User user;
-  String token;
+  String accessToken;
+  String refreshToken;
   int theme;
   String lastLogin;
 }
