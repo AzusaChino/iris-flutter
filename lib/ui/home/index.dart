@@ -9,14 +9,19 @@ class HomeRouteState extends State<HomeRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Home")),
+      appBar: AppBar(title: Text("Home"),),
       body: buildBody(),
       drawer: buildDrawer(),
     );
   }
 
   Widget buildBody() {
-    return Center();
+    return Center(
+      child: ElevatedButton(
+        child: Text("login"),
+        onPressed: () => Navigator.of(context).pushNamed("/login"),
+      ),
+    );
   }
 
   Widget buildDrawer() {

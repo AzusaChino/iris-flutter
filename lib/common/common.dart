@@ -1,8 +1,12 @@
+/// 通用返回值格式
+///
 class RestResponse<T> {
   final int code;
+  final T data;
   final String message;
-  final T t;
 
-  RestResponse(this.code, this.message, this.t);
+  RestResponse(int code, String message, T data)
+      : this.code = code,
+        this.data = data,
+        this.message = message;
 }
-
