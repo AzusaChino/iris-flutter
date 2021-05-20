@@ -77,3 +77,4 @@ lint/tmp/
 # flutter
 .dart_tool/
 .packages
+.flutter-*

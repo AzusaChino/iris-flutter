@@ -10,15 +10,19 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User()
-      ..username = json['username'] as String
-      ..avatar = json['avatar'] as String
-      ..vip = json['vip'] as String
-      ..status = json['status'] as String;
+      ..username = json['username']
+      ..avatar = json['avatar']
+      ..vip = json['vip']
+      ..status = json['status'];
   }
 
-  Map<String, dynamic> toJson(User instance) {
+  Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      "username": instance.username,
+      "username": this.username,
+      "email": this.email,
+      "avatar": this.avatar,
+      "vip": this.vip,
+      "status": this.status
     };
   }
 }

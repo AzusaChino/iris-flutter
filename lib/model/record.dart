@@ -13,12 +13,16 @@ class Record {
 
   factory Record.fromJson(Map<String, dynamic> json) {
     return Record()
-      ..name = json['name'] as String
-      ..date = json['date'] as String
-      ..season = json['season'] as String
-      ..episode = json['episode'] as String
-      ..visual = json['visual'] as String
-      ..star = json['star'] as String
-      ..comment = json['comment'] as String;
+      ..name = json['name']
+      ..date = json['date']
+      ..season = json['season']
+      ..episode = json['episode']
+      ..visual = json['visual']
+      ..star = json['star']
+      ..comment = json['comment'];
+  }
+
+  Map<String, dynamic> toJson() {
+    return {"sid": this.sid};
   }
 }
