@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:iris/common/global.dart';
 import 'package:iris/provider/theme_model.dart';
 import 'package:iris/provider/user_model.dart';
-import 'package:iris/ui/explore/index.dart';
 import 'package:iris/ui/login/index.dart';
-import 'package:iris/ui/main/index.dart';
-import 'package:iris/ui/mine/index.dart';
 import 'package:iris/ui/home/index.dart';
 import 'package:provider/provider.dart';
+
+import 'ui/themes/index.dart';
 
 void main() {
   Global.init().then((_) => runApp(App()));
@@ -18,6 +17,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        // 全局变量
         ChangeNotifierProvider.value(value: UserModel()),
         ChangeNotifierProvider.value(value: ThemeModel())
       ],
@@ -26,12 +26,10 @@ class App extends StatelessWidget {
           return MaterialApp(
             title: 'Iris',
             theme: ThemeData(primarySwatch: themeModel.theme),
-            home: HomeRoute(),
+            home: HomePage(), // 首页
             routes: {
               "/login": (ctx) => LoginPage(), // 登录页
-              "/main": (ctx) => MainPage(), // 首页
-              "/explore": (ctx) => ExplorePage(), // 探索页
-              '/mine': (ctx) => MinePage() // 个人主页
+              "/themes": (ctx) => ThemeChangePage() // 主题色切换页
             },
           );
         },

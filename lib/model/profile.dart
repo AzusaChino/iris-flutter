@@ -20,7 +20,7 @@ class Profile {
 
   Map<String, dynamic> toJson() {
     return {
-      "user": user.toJson(),
+      "user": this.user.toJson(),
       "accessToken": this.accessToken,
       "refreshToken": this.refreshToken,
       "theme": this.theme,
