@@ -25,6 +25,9 @@ class Global {
   static bool get isRelease => bool.fromEnvironment("dart.vm.product");
 
   static Future init() async {
+    // 解决android环境下的报错问题
+    // ignore: invalid_use_of_visible_for_testing_member
+    // SharedPreferences.setMockInitialValues({});
     _prefs = await SharedPreferences.getInstance();
     var _profile = _prefs.getString("profile");
     if (_profile != null) {

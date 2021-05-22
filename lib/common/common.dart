@@ -10,3 +10,6 @@ class RestResponse<T> {
         this.data = data,
         this.message = message;
 }
+
+// 日期格式
+const DATE_FORMAT = "yyyy-MM-dd";

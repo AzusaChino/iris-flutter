@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iris/model/index.dart';
 import 'package:iris/provider/user_model.dart';
 import 'package:iris/ui/home/section_list_item.dart';
+import 'package:iris/ui/section/index.dart';
 import 'package:iris/utils/http_util.dart';
 import 'package:provider/provider.dart';
 
@@ -13,15 +14,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   void _onSectionItemTapped(BuildContext context, Section section) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return null;
+      return SectionPage(section: section);
     }));
   }
+
+  // 直接检索record
+  void _search() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Iris Capsule"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () => _search(),
+          )
+        ],
       ),
       body: _buildBody(),
       drawer: _buildDrawer(),

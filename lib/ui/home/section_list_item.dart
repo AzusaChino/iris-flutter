@@ -28,7 +28,8 @@ class SectionListItem extends StatelessWidget {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               // 整体采用默认图片
-                              image: Image.asset("imgs/section-default").image,
+                              image:
+                                  Image.asset("imgs/section-default.jpg").image,
                               alignment: Alignment.center),
                           borderRadius: BorderRadius.all(Radius.circular(4))),
                     ),

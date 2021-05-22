@@ -5,7 +5,9 @@ import 'package:iris/common/errors.dart';
 import 'package:iris/common/global.dart';
 import 'package:iris/model/index.dart';
 
-const baseUrl = 'http://127.0.0.1:3333/api';
+// 手机环境下，有自己的一套网络环境，不能直接使用localhost
+// const baseUrl = 'http://10.3.23.16:3333/api';
+const baseUrl = 'http://127.0.0.1/3333/api';
 
 class HttpUtil {
   static Dio dio = new Dio(BaseOptions(
@@ -72,7 +74,7 @@ class HttpUtil {
   }
 
   Future<List<Record>> getRecordList(String sid) async {
-    var r = await dio.get("/record/$sid");
+    var r = await dio.get("/$sid/record");
     if (r.statusCode != 200) {
       throw CommonError("获取record信息失败");
     }

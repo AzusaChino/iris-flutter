@@ -8,7 +8,7 @@ class ThemeChangePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("选择主题色"),
+        title: Text("请选择主题色"),
       ),
       body: ListView(
         //显示主题色块
