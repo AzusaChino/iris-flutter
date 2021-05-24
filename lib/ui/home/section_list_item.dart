@@ -16,7 +16,7 @@ class SectionListItem extends StatelessWidget {
         padding: EdgeInsets.only(top: 8, right: 8, left: 8),
         child: Card(
           child: InkWell(
-            splashColor: Colors.blue.withAlpha(30),
+            splashColor: Theme.of(ctx).splashColor.withAlpha(30),
             onTap: () => onTapped(section),
             child: SizedBox(
               height: 100,

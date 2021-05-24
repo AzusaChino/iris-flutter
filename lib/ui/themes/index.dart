@@ -12,18 +12,18 @@ class ThemeChangePage extends StatelessWidget {
       ),
       body: ListView(
         //显示主题色块
-        children: Global.themes.map<Widget>((item) {
+        children: Global.themes.map((item) {
           return GestureDetector(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
               child: Container(
                 color: item,
                 height: 40,
               ),
             ),
             onTap: () {
-              //主题更新后，MaterialApp会重新build
-              Provider.of<ThemeModel>(context).theme = item;
+              //主题更新后，MaterialApp会重新build => 需要手动传递 listen:false
+              Provider.of<ThemeModel>(context, listen: false).theme = item;
             },
           );
         }).toList(),

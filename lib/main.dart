@@ -28,8 +28,8 @@ class App extends StatelessWidget {
             theme: ThemeData(primarySwatch: themeModel.theme),
             home: HomePage(), // 首页
             routes: {
-              "/login": (ctx) => LoginPage(), // 登录页
-              "/themes": (ctx) => ThemeChangePage() // 主题色切换页
+              "/login": (context) => LoginPage(), // 登录页
+              "/themes": (context) => ThemeChangePage() // 主题色切换页
             },
           );
         },

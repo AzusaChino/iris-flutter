@@ -17,51 +17,51 @@ class RecordListItem extends StatelessWidget {
           image: DecorationImage(
               image:
                   // 展示当前作品的Key Visual
-                  Image.asset("imgs/background.jpg").image,
-              fit: BoxFit.fill)),
-      child: Padding(
-        padding: EdgeInsets.only(top: 8.0),
-        child: Material(
-          color: Colors.white,
-          shape: BorderDirectional(
-              bottom:
-                  BorderSide(color: Theme.of(context).dividerColor, width: .5)),
-          child: Padding(
+                  AssetImage("imgs/background.jpg"),
+              fit: BoxFit.cover)),
+      padding: EdgeInsets.only(top: 50.0),
+      child: InkWell(
+        splashColor: Theme.of(context).splashColor.withAlpha(30),
+        onTap: () => onTapped(record),
+        child: Padding(
             padding: EdgeInsets.only(top: 0.0, bottom: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(record.name,
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
-                      Padding(
-                        padding: EdgeInsets.only(top: 8, bottom: 12),
-                        child: Row(
-                          children: [
-                            Text(formatTimestamp(record.timestamp)),
-                            SizedBox(width: 16),
-                            record.season == null
-                                ? Text(record.episode)
-                                : Row(children: [
-                                    Text(record.season),
-                                    SizedBox(width: 2),
-                                    Text(record.episode)
-                                  ]),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(record.name,
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white.withOpacity(.8))),
+                    Padding(
+                      padding: EdgeInsets.only(top: 8, bottom: 12),
+                      child: Row(
+                        children: [
+                          record.season == null
+                              ? Text(record.episode)
+                              : Row(children: [
+                                  Text(
+                                    record.season,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  SizedBox(width: 2),
+                                  Text(record.episode,
+                                      style: TextStyle(color: Colors.white)),
+                                  SizedBox(width: 16),
+                                  Text(formatTimestamp(record.timestamp),
+                                      style: TextStyle(color: Colors.white)),
+                                ]),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ])),
       ),
     );
   }

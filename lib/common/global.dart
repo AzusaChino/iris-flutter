@@ -40,7 +40,6 @@ class Global {
     HttpUtil.init();
   }
 
-  static void saveProfile() {
-    _prefs.setString("profile", jsonEncode(profile.toJson()));
-  }
+  static saveProfile() =>
+      _prefs.setString("profile", jsonEncode(profile.toJson()));
 }

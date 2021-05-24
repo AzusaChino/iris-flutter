@@ -7,7 +7,7 @@ import 'package:iris/model/index.dart';
 
 // 手机环境下，有自己的一套网络环境，不能直接使用localhost
 // const baseUrl = 'http://10.3.23.16:3333/api';
-const baseUrl = 'http://127.0.0.1/3333/api';
+const baseUrl = 'http://localhost:3333/api';
 
 class HttpUtil {
   static Dio dio = new Dio(BaseOptions(
@@ -15,7 +15,7 @@ class HttpUtil {
       connectTimeout: 10000,
       receiveTimeout: 5000,
       responseType: ResponseType.json));
-  BaseOptions options;
+  Options _options;
 
   static void init() {
     dio.options.headers[HttpHeaders.authorizationHeader] =
@@ -73,8 +73,14 @@ class HttpUtil {
         .toList();
   }
 
-  Future<List<Record>> getRecordList(String sid) async {
-    var r = await dio.get("/$sid/record");
+  Future<List<Record>> getRecordList(
+      {String sid, Map<String, dynamic> params, refresh = false}) async {
+    if (refresh) {
+      _options.extra.addAll({"refresh": true, "list": true});
+    }
+    var r = await dio.get("/$sid/record",
+        queryParameters: params, options: _options);
+
     if (r.statusCode != 200) {
       throw CommonError("获取record信息失败");
     }

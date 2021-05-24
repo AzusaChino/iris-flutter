@@ -20,11 +20,11 @@ class Profile {
 
   Map<String, dynamic> toJson() {
     return {
-      "user": this.user.toJson(),
-      "accessToken": this.accessToken,
-      "refreshToken": this.refreshToken,
-      "theme": this.theme,
-      "lastLogin": this.lastLogin
+      "user": user?.toJson(),
+      "accessToken": accessToken,
+      "refreshToken": refreshToken,
+      "theme": theme,
+      "lastLogin": lastLogin
     };
   }
 }
