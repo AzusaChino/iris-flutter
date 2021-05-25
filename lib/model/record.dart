@@ -3,12 +3,15 @@ class Record {
 
   String id;
   String sid;
+  // String uname;
   String name;
-  int timestamp;
-  String season;
   String episode;
-  String visual;
+  String status; // 作品状态
+  String watched; // 观看状态
+  int timestamp;
+
   double star;
+  String visual;
   String comment;
 
   factory Record.fromJson(Map<String, dynamic> json) {
@@ -17,11 +20,12 @@ class Record {
       ..id = json['id']
       ..sid = json['sid']
       ..name = json['name']
-      ..timestamp = json['timestamp']
-      ..season = json['season']
       ..episode = json['episode']
-      ..visual = json['visual']
+      ..status = json['status']
+      ..watched = json['watched']
+      ..timestamp = json['timestamp']
       ..star = json['star']
+      ..visual = json['visual']
       ..comment = json['comment'];
   }
 

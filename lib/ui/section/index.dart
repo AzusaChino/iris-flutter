@@ -2,7 +2,7 @@ import 'package:flukit/flukit.dart';
 import 'package:flutter/material.dart';
 import 'package:iris/model/index.dart';
 import 'package:iris/ui/record/index.dart';
-import 'package:iris/ui/section/record_item.dart';
+import 'package:iris/ui/section/record_list_item.dart';
 import 'package:iris/utils/http_util.dart';
 
 class SectionPage extends StatelessWidget {
