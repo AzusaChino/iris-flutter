@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iris/common/global.dart';
 import 'package:iris/model/index.dart';
 import 'package:iris/provider/user_model.dart';
@@ -30,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext ctx) {
     return Scaffold(
-        appBar: AppBar(title: Text("欢迎光临")),
+        appBar: AppBar(title: Text("登录页")),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
@@ -99,16 +100,27 @@ class _LoginPageState extends State<LoginPage> {
         user = await httpUtil.getUser();
         Provider.of<UserModel>(context, listen: false).user = user;
       } catch (e) {
-        print(e);
-        // if (e?.response?.statusCode == 401) {
-        // } else {
-        //   print(e);
-        // }
-      } finally {
-        Navigator.of(context).pop();
+        print("登录时发生了异常: $e");
       }
       if (user != null) {
+        Fluttertoast.showToast(
+            msg: "登录成功!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
         Navigator.of(context).pop();
+      } else {
+        Fluttertoast.showToast(
+            msg: "登录失败, 请重试",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
       }
     }
   }

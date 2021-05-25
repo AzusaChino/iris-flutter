@@ -78,3 +78,4 @@ lint/tmp/
 .dart_tool/
 .packages
 .flutter-*
+generated_plugin_registrant.dart

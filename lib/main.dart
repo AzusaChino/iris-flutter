@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iris/common/global.dart';
 import 'package:iris/provider/theme_model.dart';
 import 'package:iris/provider/user_model.dart';
-import 'package:iris/ui/login/index.dart';
+import 'package:iris/ui/auth/login.dart';
+import 'package:iris/ui/auth/register.dart';
 import 'package:iris/ui/home/index.dart';
 import 'package:provider/provider.dart';
 
@@ -24,12 +25,13 @@ class App extends StatelessWidget {
       child: Consumer<ThemeModel>(
         builder: (context, themeModel, child) {
           return MaterialApp(
-            title: 'Iris',
+            title: 'IrisFlutter',
             theme: ThemeData(primarySwatch: themeModel.theme),
             home: HomePage(), // 首页
             routes: {
               "/login": (context) => LoginPage(), // 登录页
-              "/themes": (context) => ThemeChangePage() // 主题色切换页
+              "/themes": (context) => ThemeChangePage(), // 主题色切换页
+              "/register": (context) => RegisterPage() // 注册页
             },
           );
         },

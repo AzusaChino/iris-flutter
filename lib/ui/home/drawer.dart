@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iris/provider/user_model.dart';
 import 'package:provider/provider.dart';
 
@@ -83,6 +84,14 @@ class MyDrawer extends StatelessWidget {
                             onPressed: () {
                               //该赋值语句会触发MaterialApp rebuild
                               userModel.user = null;
+                              Fluttertoast.showToast(
+                                  msg: "注销成功",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.TOP,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.green,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
                               Navigator.pop(context);
                             },
                           ),

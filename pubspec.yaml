@@ -18,6 +18,8 @@ dependencies:
   flukit: ^1.0.2 # infinite list view (分页列表)
   flutter_rating_bar: ^4.0.0 # 评分bar
   intl: ^0.17.0 # 日期格式化
+  email_validator: ^2.0.1 # email校验
+  fluttertoast: ^8.0.7 # 提示框
 
 dev_dependencies:
   flutter_test:

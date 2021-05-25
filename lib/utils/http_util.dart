@@ -22,6 +22,16 @@ class HttpUtil {
         Global.profile.accessToken;
   }
 
+  Future<bool> register(
+      {String username, String email, String password}) async {
+    var r = await dio.post("/register",
+        data: {"username": username, "email": email, "password": password});
+    if (r.statusCode != 200) {
+      throw CommonError("注册失败");
+    }
+    return true;
+  }
+
   Future<void> login({String username, String password}) async {
     // 通过泛型 => 会报转义错误 => 默认_JsonMap不能直接用对象接
     var r = await dio
@@ -90,4 +100,8 @@ class HttpUtil {
         .map((item) => Record.fromJson(item as Map<String, dynamic>))
         .toList();
   }
+}
+
+Future<List<Record>> searchRecordList() async {
+  return null;
 }

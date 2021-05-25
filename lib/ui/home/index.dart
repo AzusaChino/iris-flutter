@@ -13,6 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static const title = "Iris Flutter";
+
   void _onSectionItemTapped(BuildContext context, Section section) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return SectionPage(section: section);
@@ -26,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Iris Capsule"),
+        title: Text(title),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -43,17 +45,59 @@ class _HomePageState extends State<HomePage> {
     // retrieve data from Provider(ctx)
     UserModel userModel = Provider.of<UserModel>(context);
     if (!userModel.isLogin) {
-      return Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("请先登录，再进行其他操作"),
-          ElevatedButton(
-            child: Text("登录"),
-            onPressed: () => Navigator.of(context).pushNamed("/login"),
-          )
-        ],
-      ));
+      return Padding(
+        padding: EdgeInsets.only(top: 360),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Text("欢迎使用$title, 希望可以帮助到您.")],
+            ),
+            SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 2)),
+                  ),
+                  onPressed: () => Navigator.of(context).pushNamed("/login"),
+                  child: Text(
+                    '登录',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "如果你没有帐户的话, ",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(color: Colors.black),
+                ),
+                TextButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 2)),
+                  ),
+                  onPressed: () => Navigator.of(context).pushNamed("/register"),
+                  child: Text(
+                    "请先注册",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
     } else {
       return FutureBuilder<List<Section>>(
           future: HttpUtil().getSectionList(),
