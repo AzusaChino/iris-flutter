@@ -3,6 +3,7 @@ import 'package:iris/model/index.dart';
 import 'package:iris/provider/user_model.dart';
 import 'package:iris/ui/home/drawer.dart';
 import 'package:iris/ui/home/section_list_item.dart';
+import 'package:iris/ui/search/index.dart';
 import 'package:iris/ui/section/index.dart';
 import 'package:iris/utils/http_util.dart';
 import 'package:provider/provider.dart';
@@ -16,29 +17,34 @@ class _HomePageState extends State<HomePage> {
   static const title = "Iris Flutter";
 
   void _onSectionItemTapped(BuildContext context, Section section) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return SectionPage(section: section);
-    }));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => SectionPage(section: section)));
   }
 
   // 直接检索record
-  void _search() {}
+  void _search() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => SearchPage()));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () => _search(),
-          )
-        ],
-      ),
-      body: _buildBody(),
-      drawer: MyDrawer(),
-    );
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: _buildBody(),
+        drawer: MyDrawer(),
+        floatingActionButton: _buildSearchButton());
+  }
+
+  Widget _buildSearchButton() {
+    UserModel userModel = Provider.of<UserModel>(context);
+    if (userModel.isLogin) {
+      return IconButton(icon: Icon(Icons.search), onPressed: () => _search());
+    } else {
+      return null;
+    }
   }
 
   Widget _buildBody() {
