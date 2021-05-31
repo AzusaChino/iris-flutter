@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:iris/service/index.dart';
 import 'package:iris/utils/http_util.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -132,7 +133,7 @@ class _RegisterPageState extends State<RegisterPage> {
     if ((_formKey.currentState as FormState).validate()) {
       var result;
       try {
-        result = await HttpUtil().register(
+        result = await register(
             username: _unameController.text,
             email: _emailController.text,
             password: _passController.text);

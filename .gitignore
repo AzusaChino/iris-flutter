@@ -79,3 +79,5 @@ lint/tmp/
 .packages
 .flutter-*
 generated_plugin_registrant.dart
+
+.vscode/

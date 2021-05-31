@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iris/common/global.dart';
 import 'package:iris/model/index.dart';
 import 'package:iris/provider/user_model.dart';
-import 'package:iris/utils/http_util.dart';
+import 'package:iris/service/index.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -94,10 +94,9 @@ class _LoginPageState extends State<LoginPage> {
     if ((_formKey.currentState as FormState).validate()) {
       User user;
       try {
-        var httpUtil = HttpUtil();
-        await httpUtil.login(
+        await login(
             username: _unameController.text, password: _pwdController.text);
-        user = await httpUtil.getUser();
+        user = await getUser();
         Provider.of<UserModel>(context, listen: false).user = user;
       } catch (e) {
         print("登录时发生了异常: $e");

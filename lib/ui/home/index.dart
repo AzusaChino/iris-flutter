@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iris/model/index.dart';
 import 'package:iris/provider/user_model.dart';
+import 'package:iris/service/section.dart';
 import 'package:iris/ui/home/drawer.dart';
 import 'package:iris/ui/home/section_list_item.dart';
 import 'package:iris/ui/search/index.dart';
@@ -106,7 +107,7 @@ class _HomePageState extends State<HomePage> {
       );
     } else {
       return FutureBuilder<List<Section>>(
-          future: HttpUtil().getSectionList(),
+          future: getSectionList(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (!snapshot.hasError && snapshot.hasData) {
