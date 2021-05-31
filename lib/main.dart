@@ -11,6 +11,9 @@ import 'ui/themes/index.dart';
 
 void main() {
   Global.init().then((_) => runApp(App()));
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  //     statusBarColor: Colors.transparent,
+  //     statusBarBrightness: Brightness.light));
 }
 
 class App extends StatelessWidget {

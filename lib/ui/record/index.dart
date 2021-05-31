@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iris/common/enum.dart';
+import 'package:iris/common/common.dart';
 import 'package:iris/model/index.dart';
 
 // record详情页
@@ -38,9 +38,9 @@ class RecordPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 12.0),
                   child: Row(
                     children: [
-                      Text(RecordStatus[record.status]),
+                      Text(RECORD_STAUS_MAP[record.status]),
                       SizedBox(width: 8),
-                      Text(WatchStatus[record.watched]),
+                      Text(WATCH_STATUS_MAP[record.watched]),
                       SizedBox(width: 8),
                       Text(record.comment)
                     ],

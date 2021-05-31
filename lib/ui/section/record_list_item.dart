@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iris/common/enum.dart';
+import 'package:iris/common/common.dart';
 import 'package:iris/model/index.dart';
 import 'package:iris/utils/date_util.dart';
 
@@ -18,7 +18,7 @@ class RecordListItem extends StatelessWidget {
         //     border: Border.all(color: Colors.white, width: .5),
         //     image: DecorationImage(
         //         image:
-        //             // 展示当前作品的Key Visual
+        // 展示当前作品的Key Visual
         //             AssetImage("imgs/background.jpg"),
         //         fit: BoxFit.cover)),
         // padding: EdgeInsets.only(top: 50.0),
@@ -52,7 +52,7 @@ class RecordListItem extends StatelessWidget {
                                           record.episode,
                                         ),
                                         SizedBox(width: 4),
-                                        Text(RecordStatus[record.status]),
+                                        Text(RECORD_STAUS_MAP[record.status]),
                                         SizedBox(width: 14),
                                         Text(formatTimestamp(record.timestamp)),
                                       ]),
