@@ -6,7 +6,6 @@ import 'package:iris/ui/home/drawer.dart';
 import 'package:iris/ui/home/section_list_item.dart';
 import 'package:iris/ui/search/index.dart';
 import 'package:iris/ui/section/index.dart';
-import 'package:iris/utils/http_util.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {

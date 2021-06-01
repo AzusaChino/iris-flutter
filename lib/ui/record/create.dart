@@ -61,8 +61,10 @@ class _RecordCreatePageState extends State<RecordCreatePage> {
                             prefixIcon: Icon(Icons.access_time_rounded)),
                       ),
                       Row(
-                          // mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            Text("是否完结"),
+                            SizedBox(width: 2),
                             Checkbox(
                               // title: Text("是否完结"),
                               // controlAffinity: ListTileControlAffinity.leading,
@@ -73,7 +75,9 @@ class _RecordCreatePageState extends State<RecordCreatePage> {
                                 });
                               },
                             ),
-                            SizedBox(width: 30),
+                            SizedBox(width: 16),
+                            Text("是否看完"),
+                            SizedBox(width: 2),
                             Checkbox(
                                 // title: Text("是否看完"),
                                 // controlAffinity:
@@ -85,32 +89,39 @@ class _RecordCreatePageState extends State<RecordCreatePage> {
                                   });
                                 })
                           ]),
-                      Expanded(
-                          child: RatingBar.builder(
-                      itemSize: 2.0,
-                        initialRating: 3.0,
-                        minRating: _ratting,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (ctx, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (ratting) {
-                          setState(() {
-                            _ratting = ratting;
-                          });
-                        },
-                      )),
+                      Row(
+                        children: [
+                          Text("评分"),
+                          SizedBox(width: 12),
+                          RatingBar.builder(
+                            itemSize: 20.0,
+                            initialRating: _ratting,
+                            minRating: 0.5,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                            itemBuilder: (ctx, _) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (ratting) {
+                              setState(() {
+                                _ratting = ratting;
+                              });
+                            },
+                            updateOnDrag: true,
+                          ),
+                        ],
+                      ),
                       TextFormField(
                         controller: _commentController,
                         decoration: InputDecoration(
                             labelText: "评论",
                             hintText: "请输入评论",
-                            prefix: Icon(Icons.comment)),
+                            prefixIcon: Icon(Icons.comment)),
                       ),
+                      SizedBox(height: 3),
                       Padding(
                         padding: const EdgeInsets.only(top: 25),
                         child: ConstrainedBox(
@@ -142,7 +153,7 @@ class _RecordCreatePageState extends State<RecordCreatePage> {
       var res = await insertRecord(record: record);
 
       if (res != null) {
-        Navigator.pop(context);
+        Navigator.pushNamed(context, "/");
       }
     }
   }

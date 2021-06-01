@@ -30,6 +30,15 @@ class Record {
   }
 
   Map<String, dynamic> toJson() {
-    return {"sid": this.sid};
+    return {
+      "sid": sid,
+      "name": name,
+      "episode": episode,
+      "timestamp": timestamp,
+      "status": status,
+      "watched": watched,
+      "star": star,
+      "comment": comment
+    };
   }
 }
