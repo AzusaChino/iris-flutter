@@ -8,13 +8,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ">=5.0.0-nullsafety.5 <6.0.0"
+  provider: ^5.0.0
   dio: ^4.0.0 # A powerful Http client for Dart
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.3
-  shared_preferences: ^2.0.5
+  shared_preferences: ^2.0.6
   flukit: ^1.0.2 # infinite list view (分页列表)
   flutter_rating_bar: ^4.0.0 # 评分bar
   intl: ^0.17.0 # 日期格式化
@@ -24,6 +24,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.0
 
 # The following section is specific to Flutter.
 flutter:
@@ -41,3 +42,7 @@ flutter:
   #       - asset: fonts/Roboto-Light.ttf
   #       - asset: fonts/Roboto-Regular.tff
   # style: italic
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "imgs/icon.jpg"

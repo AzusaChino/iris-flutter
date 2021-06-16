@@ -21,6 +21,14 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def keyStorePropertiesFile = rootProject.file("key.properties")
+def keyStoreProperties = new Properties()
+if (keyStorePropertiesFile.exists()) {
+    keyStorePropertiesFile.withReader('UTF-8') { reader ->
+        keyStoreProperties.load(reader)
+    }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -41,6 +49,15 @@ android {
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'sign'
+            keyPassword 'abcd1234'
+            storeFile file('key/sign.jks')
+            storePassword 'abcd1234'
+        }
+    }
+
     buildTypes {
         debug {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -51,7 +68,7 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             // signingConfig signingConfigs.debug
 
-            // signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
 
             minifyEnabled false
             shrinkResources false
