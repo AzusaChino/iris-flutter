@@ -142,7 +142,7 @@ class _RecordCreatePageState extends State<RecordCreatePage> {
     if ((_formKey.currentState as FormState).validate()) {
       var record = Record();
       record.sid = _sid;
-      record.name = _titleController.text;
+      record.title = _titleController.text;
       record.episode = _episodeController.text;
       record.timestamp = getTimestamp();
       record.status = STATUS_MAP[_statusSelected];

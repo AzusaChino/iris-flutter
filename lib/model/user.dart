@@ -5,8 +5,8 @@ class User {
   String username;
   String email;
   String avatar;
-  String vip;
-  String status;
+  int vip;
+  int status;
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User()

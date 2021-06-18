@@ -16,7 +16,7 @@ class RecordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(record.name),
+        title: Text(record.title),
         actions: [
           IconButton(onPressed: _edit(context, record), icon: Icon(Icons.edit))
         ],

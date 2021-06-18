@@ -38,7 +38,7 @@ class RecordListItem extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(record.name,
+                                Text(record.title,
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
