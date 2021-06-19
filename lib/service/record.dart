@@ -5,7 +5,7 @@ import 'package:iris/utils/http_util.dart';
 
 Future<List<Record>> getRecordList(
     {String sid, Map<String, dynamic> params, refresh = false}) async {
-  Options _options;
+  Options _options = Options(extra: {});
   if (refresh) {
     _options.extra.addAll({"refresh": true, "list": true});
   }

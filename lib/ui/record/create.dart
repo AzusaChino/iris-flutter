@@ -57,7 +57,7 @@ class _RecordCreatePageState extends State<RecordCreatePage> {
                         controller: _episodeController,
                         decoration: InputDecoration(
                             labelText: "当前进度",
-                            hintText: "请输入当前进度(第xx话)",
+                            hintText: "请输入当前进度",
                             prefixIcon: Icon(Icons.access_time_rounded)),
                       ),
                       Row(
